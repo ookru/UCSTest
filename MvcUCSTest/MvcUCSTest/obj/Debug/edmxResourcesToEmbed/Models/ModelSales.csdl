@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UCSTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="data_sales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_good" Type="Int32" Nullable="false" />
+    <Property Name="date_sale" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="summ" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ref_goods" Relationship="Self.FK_data_sales_ref_goods" FromRole="data_sales" ToRole="ref_goods" />
+  </EntityType>
+  <EntityType Name="ref_goods">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="data_sales" Relationship="Self.FK_data_sales_ref_goods" FromRole="ref_goods" ToRole="data_sales" />
+  </EntityType>
+  <Association Name="FK_data_sales_ref_goods">
+    <End Role="ref_goods" Type="Self.ref_goods" Multiplicity="1" />
+    <End Role="data_sales" Type="Self.data_sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ref_goods">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="data_sales">
+        <PropertyRef Name="id_good" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UCSTestEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="data_sales" EntityType="Self.data_sales" />
+    <EntitySet Name="ref_goods" EntityType="Self.ref_goods" />
+    <AssociationSet Name="FK_data_sales_ref_goods" Association="Self.FK_data_sales_ref_goods">
+      <End Role="ref_goods" EntitySet="ref_goods" />
+      <End Role="data_sales" EntitySet="data_sales" />
+    </AssociationSet>
+    <FunctionImport Name="GetSalesData" ReturnType="Collection(UCSTestModel.GetSalesData_Result)" />
+  </EntityContainer>
+  <ComplexType Name="GetSalesData_Result">
+    <Property Type="DateTime" Name="date_sale" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="id_good" Nullable="true" />
+    <Property Type="Int32" Name="code" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="quanity" Nullable="true" />
+    <Property Type="Int32" Name="summ" Nullable="true" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище UCSTestModelContainer" CdmEntityContainer="UCSTestEntities">
+    <EntitySetMapping Name="data_sales">
+      <EntityTypeMapping TypeName="UCSTestModel.data_sales">
+        <MappingFragment StoreEntitySet="data_sales">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_good" ColumnName="id_good" />
+          <ScalarProperty Name="date_sale" ColumnName="date_sale" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="summ" ColumnName="summ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ref_goods">
+      <EntityTypeMapping TypeName="UCSTestModel.ref_goods">
+        <MappingFragment StoreEntitySet="ref_goods">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetSalesData" FunctionName="Хранилище UCSTestModel.GetSalesData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="UCSTestModel.GetSalesData_Result">
+          <ScalarProperty Name="datesale" ColumnName="datesale" />
+          <ScalarProperty Name="id_good" ColumnName="id_good" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="quanity" ColumnName="quanity" />
+          <ScalarProperty Name="summ" ColumnName="summ" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

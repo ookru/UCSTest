@@ -1,0 +1,38 @@
+﻿@using System.Web.Optimization
+@model IEnumerable<MvcUCSTest.Models.GetSalesData_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Styles.Render("~/Content/css")
+<h5>Статистика продаж</h5>
+<table>
+    <tr>
+        <th>Код товара</th>
+        <th>Название товара</th>
+        <th>Продано, шт.</th>
+        <th>Сумма, руб.</th>
+    </tr>
+   @foreach (var groupingItem in Model.GroupBy(x => x.datesale))
+{
+    <tr>
+        <td colspan=4 class="DateCell">@Convert.ToDateTime(groupingItem.Key).ToString("dd.MM.yyyy")</td>
+
+    </tr>
+    foreach (var item in groupingItem)
+    {
+        <tr class="GoodRow">
+            <td>@item.code</td>
+            <td class="GoodName">@item.name</td>
+            <td>@item.quanity</td>
+            <td>@item.summ</td>
+        </tr>
+    }
+
+}
+
+   
+
+</table>
+
+

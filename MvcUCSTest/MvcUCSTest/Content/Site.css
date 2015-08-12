@@ -1,0 +1,40 @@
+﻿body {
+    
+}
+
+table {
+    
+    background-color:#fffad3;
+    border:1px solid #ffc300;
+    font-size:10px; 
+    
+    text-align:center;
+   
+}
+td { 
+    margin:0px;
+    padding:5px; 
+    border:1px solid #ffc300;
+}
+th {
+     margin:0px;
+    padding:5px; 
+    border:1px solid #fe7f7f;
+    background-color: #ff9999;
+    font-weight:normal;
+}
+
+
+td.DateCell 
+{
+    background-color: #ffc4ef;
+     border:1px solid #ffa4e6;
+}
+
+tr.GoodRow {
+    background-color: #FFFFCC;
+}
+
+td.GoodName {
+   text-align:left;
+}

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище UCSTestModel" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="data_sales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_good" Type="int" Nullable="false" />
+    <Property Name="date_sale" Type="datetime" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="summ" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ref_goods">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_data_sales_ref_goods">
+    <End Role="ref_goods" Type="Self.ref_goods" Multiplicity="1" />
+    <End Role="data_sales" Type="Self.data_sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ref_goods">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="data_sales">
+        <PropertyRef Name="id_good" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetSalesData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище UCSTestModelContainer">
+    <EntitySet Name="data_sales" EntityType="Self.data_sales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ref_goods" EntityType="Self.ref_goods" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_data_sales_ref_goods" Association="Self.FK_data_sales_ref_goods">
+      <End Role="ref_goods" EntitySet="ref_goods" />
+      <End Role="data_sales" EntitySet="data_sales" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
